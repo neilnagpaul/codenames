@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Codenames</title>
+<link rel="stylesheet" href="style.css">
+<script type="module" src="script.js"></script>
+
+<h1>Codenames Duet</h1>
+<dl>
+    <dt>Role</dt>
+    <dd>
+        <select id="role">
+            <option value="operative" selected>Operative</option>
+            <option value="spymaster">Spymaster</option>
+        </select>
+    </dd>
+    <dt>Team</dt>
+    <dd>
+        <select>
+            <option value="red" selected>Red</option>
+            <option value="blue">Blue</option>
+        </select>
+    </dd>
+    <dt>Turn</dt>
+    <dd>
+        <div id="turn" class="red">red</div>
+        <button>End turn</button>
+    </dd>
+</dl>
+<main id="grid"></main>
