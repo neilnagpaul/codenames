@@ -96,7 +96,7 @@ def on_disconnect(client):
         del games[code]
 
 
-ui.navigate.to(f"/game/{"-".join(sample(words, 3))}")
+ui.navigate.to(f"/game/{'-'.join(sample(words, 3))}")
 games: dict[str, Tuple[set, Game]] = (defaultdict(lambda: (set(), Game())))
 
 ui.run_with(app := FastAPI())
