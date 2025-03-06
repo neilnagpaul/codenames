@@ -16,7 +16,7 @@ colors = ["red"] * 9 + ["blue"] * 8 + ["gray"] * 7 + ["purple"]
 
 class Game:
     def __init__(self):
-        self.turns = cycle(["blue", "red"])
+        self.turns = cycle(["red", "blue"])
         self.turn = next(self.turns)
         self.done = False
         self.board = {
