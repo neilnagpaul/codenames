@@ -4,6 +4,7 @@ from itertools import cycle
 from random import sample
 from typing import Callable, Tuple
 from fastapi import FastAPI
+from fastapi.responses import RedirectResponse
 from nicegui import app as niceapp, ui
 
 
@@ -96,7 +97,14 @@ def on_disconnect(client):
         del games[code]
 
 
-ui.navigate.to(f"/game/{'-'.join(sample(words, 3))}")
 games: dict[str, Tuple[set, Game]] = (defaultdict(lambda: (set(), Game())))
 
-ui.run_with(app := FastAPI())
+app = FastAPI()
+
+
+@app.get("/")
+def index():
+    return RedirectResponse(f"/game/{'-'.join(sample(words, 3))}")
+
+
+ui.run_with(app)
