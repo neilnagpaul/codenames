@@ -35,8 +35,8 @@ class Game:
             if color != self.turn:
                 self.turn = next(self.turns)
             self.done = color == "purple" or not any(
-                _color == self.turn and not _revealed
-                for _color, _revealed in self.board.values()
+                cell == (self.turn, False)
+                for cell in self.board.values()
             )
             self.view.refresh()
 
