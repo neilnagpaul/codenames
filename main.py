@@ -35,8 +35,7 @@ class Game:
             if color != self.turn:
                 self.turn = next(self.turns)
             self.done = color == "purple" or not any(
-                cell == (self.turn, False)
-                for cell in self.board.values()
+                cell == (self.turn, False) for cell in self.board.values()
             )
             self.view.refresh()
 
@@ -44,23 +43,21 @@ class Game:
             ui.toggle(["red", "blue"]).bind_value(self, "turn")
 
         grid = ui.grid()
-        (grid.tailwind
-            .grid_template_columns("5")
-            .grid_auto_rows("fr")
-            .gap("0.5")
-            .width("full")
-            .aspect_ratio("square")
-         )
-        (grid
-            .style("grid-template-columns: repeat(5, minmax(0, 1fr))")
-            .style("overflow-wrap: anywhere"))
+        grid.tailwind.grid_template_columns("5").grid_auto_rows("fr")
+        grid.tailwind.gap("0.5").width("full").aspect_ratio("square")
+        grid.style("grid-template-columns: repeat(5, minmax(0, 1fr))")
+        grid.style("overflow-wrap: anywhere")
+
         with grid:
             for word, (color, revealed) in self.board.items():
                 btn = ui.button(
                     word,
-                    color=(color + "-200" * (not revealed)
-                           if spymaster.value or revealed else "white"),
-                    on_click=partial(reveal, word)
+                    color=(
+                        color + "-200" * (not revealed)
+                        if spymaster.value or revealed
+                        else "white"
+                    ),
+                    on_click=partial(reveal, word),
                 )
                 btn.props("padding=0")
                 btn.tailwind.font_size("xs")
